@@ -23,9 +23,7 @@ class Common(Configuration):
 
     BASE_DIR = BASE_DIR
 
-    SECRET_KEY = env.str(
-        "BACKEND_SECRET_KEY", default="temp"
-    )
+    SECRET_KEY = env.str("BACKEND_SECRET_KEY", default="temp")
 
     INSTALLED_APPS = [
         # django apps
@@ -54,7 +52,7 @@ class Common(Configuration):
         # our apps
         "backend.apps.common.apps.CommonConfig",
         "backend.apps.accounts.apps.AccountsConfig",
-        "backend.apps.backend.apps.BackendConfig",
+        "backend.apps.ytcron.apps.YtcronConfig",
     ]
 
     MIDDLEWARE = [
@@ -295,7 +293,9 @@ class Common(Configuration):
     }
 
     REST_AUTH_REGISTER_SERIALIZERS = {
-        "REGISTER_SERIALIZER": "backend.apps.accounts.serializers.CustomRegisterSerializer"
+        "REGISTER_SERIALIZER": (
+            "backend.apps.accounts.serializers.CustomRegisterSerializer"
+        )
     }
 
     # Frontend URL to be used for password reset email, needs to be
@@ -344,9 +344,8 @@ class Common(Configuration):
     CELERY_TASK_SERIALIZER = "json"
     CELERY_RESULT_SERIALIZER = "json"
     CELERY_RESULT_BACKEND = "django-db"
-
     CELERY_CACHE_BACKEND = "default"
-
+    CELERY_IMPORTS = ['backend.apps.common.tasks']
     # Swagger settings
     SWAGGER_SETTINGS = {
         "SECURITY_DEFINITIONS": {
@@ -364,19 +363,13 @@ class Common(Configuration):
     MAX_PAGE_SIZE = env.int("MAX_PAGE_SIZE", 30)
 
     # Url prefixes and settings
-    API_PREFIX = env.str(
-        "BACKEND_API_PREFIX", "api"
-    )
-    API_VERSION = env.str(
-        "BACKEND_API_VERSION", "v1"
-    )
+    API_PREFIX = env.str("BACKEND_API_PREFIX", "api")
+    API_VERSION = env.str("BACKEND_API_VERSION", "v1")
     PLATFORM_PREFIX = env.str(
         "BACKEND_PLATFORM_PREFIX",
         "_platform",
     )
-    DOCS_PREFIX = env.str(
-        "BACKEND_DOCS_PREFIX", "docs"
-    )
+    DOCS_PREFIX = env.str("BACKEND_DOCS_PREFIX", "docs")
 
     # Other settings
     COMMUNICATOR_NAME = env.str(
@@ -395,6 +388,9 @@ class Common(Configuration):
     )
     HOSTED_DOMAIN = env.str(
         "BACKEND_HOSTED_DOMAIN",
-        "https://ohuru.tech/",
+        "",
     )
+    # Logging level
+    LOGGING_LEVEL = env.str("LOGGING_LEVEL", default="INFO")
+
     API_DESCRIPTION_PATH = rel("docs", "README.md")

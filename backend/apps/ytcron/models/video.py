@@ -20,4 +20,3 @@ class Video(models.Model):
             "-published_at",
             "_id",
         ]
-        verbose_name_plural = "VideosData"

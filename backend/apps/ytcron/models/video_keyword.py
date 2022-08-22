@@ -1,7 +1,7 @@
 from django.db import models
 
-from backend.apps.ytcron.models.Keyword import Keyword
-from backend.apps.ytcron.models.Video import Video
+from backend.apps.ytcron.models.keyword import Keyword
+from backend.apps.ytcron.models.video import Video
 
 
 class Video_Keyword(models.Model):
