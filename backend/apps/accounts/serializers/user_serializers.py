@@ -11,7 +11,7 @@ from django.conf import settings
 from rest_framework import serializers
 
 from backend.apps.accounts.forms import CustomPasswordResetForm
-from backend.apps.accounts.models.user_models import AccountType, User
+from backend.apps.accounts.models.user_models import User
 
 
 class CustomLoginSerializer(LoginSerializer):
@@ -41,9 +41,6 @@ class CustomRegisterSerializer(RegisterSerializer):
 
     username = None
     name = serializers.CharField(max_length=255, required=True)
-    account_type = serializers.ChoiceField(
-        choices=AccountType.choices, default=AccountType.GENERAL
-    )
 
     def get_cleaned_data(self):
         return {
@@ -78,7 +75,6 @@ class UserSerializer(serializers.ModelSerializer):
             "name",
             "email",
             "account_type",
-            "profile_pic",
         )
 
 
@@ -91,22 +87,21 @@ class CustomTokenSerializer(TokenSerializer):
 
 
 class ProfileCreateUpdateSerializer(serializers.ModelSerializer):
-    fields_names = ["name", "profile_pic"]
+    fields_names = ["name"]
 
     class Meta:
         model = User
-        fields = ("profile_pic", "name")
+        fields = "name"
 
 
 class UserInfoSerializer(serializers.ModelSerializer):
-    fields_names = ["id", "name", "profile_pic"]
+    fields_names = ["id", "name"]
 
     class Meta:
         model = User
         fields = (
             "id",
             "name",
-            "profile_pic",
         )
 
 

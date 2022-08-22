@@ -1,1 +1,1 @@
-from backend.apps.accounts.models.user_models import AccountType, User
+from backend.apps.accounts.models.user_models import User

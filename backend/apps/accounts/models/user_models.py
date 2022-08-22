@@ -4,6 +4,8 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
+from backend.apps.ytcron.models.keyword import Keyword
+
 
 class UserManager(BaseUserManager):
     use_in_migrations = True
@@ -44,27 +46,19 @@ def user_directory_path(instance, filename):
     return f"users/{instance.id}/{filename}"
 
 
-class AccountType(models.TextChoices):
-    # Just here so that it can be extended easily later
-    GENERAL = "general", _("General")
-    STAFF = "staff", _("Staff")
-
-
 class User(AbstractUser):
     username = None
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True)
-    profile_pic = models.ImageField(
-        upload_to=user_directory_path,
-        name="profile_pic",
-        blank=True,
-        null=True,
-    )
-    account_type = models.CharField(
-        choices=AccountType.choices, default=AccountType.GENERAL, max_length=8
-    )
     first_name = None
     last_name = None
+    keyword = models.ForeignKey(
+        Keyword,
+        on_delete=models.CASCADE,
+        related_name="history",
+        null=True,
+        blank=True,
+    )
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["name"]

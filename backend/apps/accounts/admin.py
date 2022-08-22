@@ -10,7 +10,6 @@ class UserAdmin(BaseUserAdmin):
     fieldsets = (
         (_("Login info"), {"fields": ("email", "password")}),
         (_("Personal info"), {"fields": ("name",)}),
-        (_("Profile info"), {"fields": ("profile_pic", "account_type")}),
         (
             _("Permissions"),
             {
@@ -24,6 +23,7 @@ class UserAdmin(BaseUserAdmin):
             },
         ),
         (_("Important dates"), {"fields": ("last_login", "date_joined")}),
+        (_("Keyword"), {"fields": ("keyword",)}),
     )
     add_fieldsets = (
         (
@@ -35,6 +35,6 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
     list_filter = ("groups",)
-    list_display = ("email", "name")
+    list_display = ("email", "name","keyword")
     search_fields = ("email", "name")
     ordering = ("email",)
