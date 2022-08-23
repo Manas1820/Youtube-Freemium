@@ -33,7 +33,7 @@ case "$1" in
   start|"")
     header "Starting celert beat"
     # Start scheduler and webserver in same container
-    celery -A {{ cookiecutter.project_slug }} beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    celery -A backend beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
     ;;
   *)
     # The command is something like bash. Just run it in the right environment.

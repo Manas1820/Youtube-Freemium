@@ -1,7 +1,7 @@
 FROM python:3.9-slim
 
 # Create a group and user to run our app
-ENV APP_USER=backenduser
+ENV APP_USER=user
 RUN groupadd -r ${APP_USER} && useradd --no-log-init -r -g ${APP_USER} ${APP_USER}
 
 # Install packages needed to run your application (not build deps):
@@ -9,6 +9,7 @@ RUN groupadd -r ${APP_USER} && useradd --no-log-init -r -g ${APP_USER} ${APP_USE
 #   postgresql-client -- for running database commands
 # We need to recreate the /usr/share/man/man{1..8} directories first because
 # they were clobbered by a parent image.
+
 RUN set -ex \
     && RUN_DEPS=" \
     libpcre3 \
@@ -21,8 +22,8 @@ RUN set -ex \
 
 # Determine if we are going to use the dev or prod stuff
 ENV RUNTIME=Prod
-# Copy in your prod requirements file
-ADD requirements_${RUNTIME}.txt /requirements.txt
+# Copy in your pord requirements file
+ADD requirements.txt /requirements.txt
 
 # Install build deps, then run `pip install`, then remove unneeded build deps
 # all in a single step.
@@ -34,6 +35,7 @@ RUN set -ex \
     libpq-dev \
     " \
     && apt-get update && apt-get install -y --no-install-recommends $BUILD_DEPS \
+    && pip install --upgrade pip \
     && pip install --no-cache-dir -r /requirements.txt \
     \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $BUILD_DEPS \
@@ -44,16 +46,17 @@ RUN set -ex \
 RUN mkdir /backend/
 WORKDIR /backend/
 ADD . /backend/
-RUN chown ${APP_USER}:${APP_USER} /backend/
+RUN chmod -R a+rwx /backend/
+# RUN chown ${APP_USER}:${APP_USER} /backend/
 
 # Set up required env variables for managepy to run
 ENV DJANGO_SETTINGS_MODULE="backend.config"
 ENV DJANGO_CONFIGURATION=${RUNTIME}
 
 # Change to a non-root user
-USER ${APP_USER}:${APP_USER}
 # Comment or uncomment if it is available
-ENTRYPOINT ["/backend/Docker/celery_entrypoint.sh"]
+# USER ${APP_USER}:${APP_USER}
+# ENTRYPOINT ["sh","/backend/docker/celery/celery_entrypoint.sh"]
 
 # Run the celery worker
 # Change it to any other command based on your file

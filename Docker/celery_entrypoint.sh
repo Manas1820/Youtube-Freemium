@@ -33,7 +33,7 @@ case "$1" in
   start|"")
     # Start celery worker
     header "Starting celery worker"
-    celery -A {{ cookiecutter.project_slug }} worker -l info
+    celery -A backend worker -l info
     ;;
   *)
     # The command is something like bash. Just run it in the right environment.

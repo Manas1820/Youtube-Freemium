@@ -1,0 +1,66 @@
+version: "3"
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend
+    hostname: backend
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    command: ./entrypoint.sh
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+      - rabbit
+    networks:
+      - shared_network
+
+  rabbit:
+    image: rabbitmq:3-management
+    container_name: rabbit
+    hostname: rabbit
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=manas
+      - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+      - "5682:5672"
+      - "15682:15672"
+    networks:
+      - shared_network
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    command: ./celery_entrypoint.sh
+    depends_on:
+      - backend
+      - rabbit
+      - db
+    networks:
+      - shared_network
+
+  db:
+    image: postgres:10-alpine
+    container_name: db
+    hostname: db
+    environment:
+      - POSTGRES_DB=app
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "54320:5432"
+    networks:
+      - shared_network
+
+networks:
+  shared_network:
+    driver: bridge
