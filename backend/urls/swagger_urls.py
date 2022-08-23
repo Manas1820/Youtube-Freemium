@@ -13,7 +13,7 @@ license_url = "https://github.com/git/git-scm.com/blob/main/MIT-LICENSE.txt"
 logo_url = "https://image.shutterstock.com/image-vector/no-image-vector-symbol-missing-260nw-1310632172.jpg"
 schema_view = get_schema_view(
     openapi.Info(
-        title="fampay_task API",
+        title="Youtube Freemium API",
         default_version="v1",
         description=description,
         contact=openapi.Contact(email=settings.CONTACT_EMAIL),
