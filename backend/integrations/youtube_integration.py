@@ -48,6 +48,7 @@ class YoutubeItegration:
             part="snippet",
             type="video",
             maxResults=10,
+            order="relevance",
         )
 
         try:
