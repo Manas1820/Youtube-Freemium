@@ -27,7 +27,7 @@ sleep 0.1;  # The $COLUMNS variable takes a moment to populate
 
 # Wait for database
 header "WAITING FOR DATABASE"
-python Docker/wait_for_db.py
+python wait_for_db.py
 
 case "$1" in
   start|"")

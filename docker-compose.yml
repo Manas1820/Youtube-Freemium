@@ -1,17 +1,19 @@
 version: "3"
 
 services:
-  backend:
+  app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: backend
-    hostname: backend
+    container_name: app
+    hostname: app
     restart: on-failure
     ports:
-      - "8080:8080"
+      - "8000:8000"
     volumes:
       - .:/app
+    env_file:
+      - ./.env
     command: ./entrypoint.sh
     stdin_open: true
     tty: true
@@ -39,10 +41,12 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    env_file:
+      - ./.env
     restart: on-failure
     command: ./celery_entrypoint.sh
     depends_on:
-      - backend
+      - app
       - rabbit
       - db
     networks:

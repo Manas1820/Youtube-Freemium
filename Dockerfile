@@ -56,7 +56,8 @@ ENV DJANGO_CONFIGURATION=${RUNTIME}
 # Change to a non-root user
 # Comment or uncomment if it is available
 # USER ${APP_USER}:${APP_USER}
-# ENTRYPOINT ["sh","/backend/docker/celery/celery_entrypoint.sh"]
+
+EXPOSE 8000
 
 # Run the celery worker
 # Change it to any other command based on your file
