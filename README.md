@@ -8,6 +8,7 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 
 - Postman : [https://documenter.getpostman.com/view/20830684/VUqrNchW](https://documenter.getpostman.com/view/20830684/VUqrNchW)
 - When running locally : [http://127.0.0.1:8000/_platform/docs/v1/swagger/](http://127.0.0.1:8000/_platform/docs/v1/swagger/)
+- Admin : [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)
 
 ## Tech Stack Used
 
@@ -15,6 +16,66 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 - [Celery](https://www.fullstackpython.com/celery.html)
 - [RabbitMq](https://rabbitmq.com/)
 - [Docker](https://www.docker.com/)
+
+## How To Run
+
+Clone the Repository
+
+```bash
+git clone https://github.com/Manas1820/Youtube_Freemium 
+```
+Change Directory to Youtube_freemium
+
+```bash
+cd Youtube_Freemium 
+```
+
+### For Docker Users :
+
+```bash
+docker-compose up --build 
+```
+
+<b>Enjoy the services at  `localhost:8000`</b>
+
+### For Local Use
+
+Create python virtual environment:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+Install the dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Copy `.env` file from example file and set your settings:
+
+```bash
+cp .env.example .env
+```
+
+Run migrations:
+
+```bash
+python manage.py migrate
+```
+<b>NOTE : prerequites install are [postgresql](https://www.postgresql.org/download/) & [rabbitmq](https://www.rabbitmq.com/install-debian.html)</b>
+
+Now Open Three Different Termina Instances and run the following :
+
+- run `python manage.py runserver`
+- run `celery -A backend worker --beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler`
+- run `celery -A backend worker -l info`
+
+Now you are ready to go !
+
+
+<b> Refer documentation for using the api's </b>
 
 ## Feature List
 
