@@ -35,7 +35,6 @@ class CustomRegisterSerializer(RegisterSerializer):
         "name",
         "password1",
         "password2",
-        "account_type",
     ]
     password_fields = ["password1", "password2"]
 
@@ -47,15 +46,11 @@ class CustomRegisterSerializer(RegisterSerializer):
             "password1": self._validated_data.get("password1", ""),
             "email": self._validated_data.get("email", ""),
             "name": self._validated_data.get("name", ""),
-            "account_type": self._validated_data.get(
-                "account_type", "general"
-            ),
         }
 
     def custom_signup(self, request, user):
         cleaned_data = self.get_cleaned_data()
         user.name = cleaned_data.get("name")
-        user.account_type = cleaned_data.get("account_type")
         user.save()
 
     def update(self, instance, validated_data):
@@ -74,7 +69,6 @@ class UserSerializer(serializers.ModelSerializer):
             "id",
             "name",
             "email",
-            "account_type",
         )
 
 
@@ -91,7 +85,7 @@ class ProfileCreateUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = "name"
+        fields = ("name",)
 
 
 class UserInfoSerializer(serializers.ModelSerializer):

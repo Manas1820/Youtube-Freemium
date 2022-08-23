@@ -6,8 +6,6 @@ user_registration_201_example = {
             "id": 1,
             "name": "John Doe",
             "email": "user@example.com",
-            "account_type": "general",
-            "profile_pic": "some_name.jpg",
         },
     }
 }
@@ -33,8 +31,6 @@ user_login_200_example = {
             "id": 1,
             "name": "John Doe",
             "email": "user@example.com",
-            "account_type": "general",
-            "profile_pic": "some_name.jpg",
         },
     }
 }

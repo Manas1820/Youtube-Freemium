@@ -15,7 +15,6 @@ curl \\
       "email": "jondoe@customer.com", \\
       "password1": "some_password", \\
       "password2": "some_password", \\
-      "account_type": "general"
     }} \\
   "{origin}/v1/"
 """  # noqa
