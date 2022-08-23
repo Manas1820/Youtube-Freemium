@@ -8,10 +8,11 @@ from backend.apps.ytcron.models.token import Token
 from backend.apps.ytcron.models.video import Video
 from backend.apps.ytcron.models.keyword import Keyword
 
+
 class YoutubeItegration:
     def __init__(self):
         self.token = self.fetch_token()
-        
+
         # reference - https://developers.google.com/youtube/v3/code_samples/code_snippets?apix_params=%7B%22part%22%3A%5B%22manas%22%5D%2C%22maxResults%22%3A25%7D&apix=true
         try:
             self.service = googleapiclient.discovery.build(
@@ -36,7 +37,7 @@ class YoutubeItegration:
 
         curr_token.no_of_calls += 1
         curr_token.save()
-        if curr_token.no_of_calls>=100:
+        if curr_token.no_of_calls >= 100:
             curr_token.working = False
             curr_token.save()
 
@@ -94,9 +95,7 @@ class YoutubeItegration:
                     title=item["snippet"]["title"],
                     description=item["snippet"]["description"],
                     published_at=item["snippet"]["publishedAt"],
-                    thumbnail_default=item["snippet"]["thumbnails"]["default"][
-                        "url"
-                    ],
+                    thumbnail_default=item["snippet"]["thumbnails"]["default"]["url"],
                 )
                 curr_keyword = Keyword.objects.get(value=keyword)
 

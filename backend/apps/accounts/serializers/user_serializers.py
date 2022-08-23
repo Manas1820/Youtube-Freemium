@@ -21,9 +21,7 @@ class CustomLoginSerializer(LoginSerializer):
     password = serializers.CharField(style={"input_type": "password"})
 
     def update(self, instance, validated_data):
-        return super(CustomLoginSerializer, self).update(
-            instance, validated_data
-        )
+        return super(CustomLoginSerializer, self).update(instance, validated_data)
 
     def create(self, validated_data):
         return super(CustomLoginSerializer, self).create(validated_data)
@@ -54,9 +52,7 @@ class CustomRegisterSerializer(RegisterSerializer):
         user.save()
 
     def update(self, instance, validated_data):
-        return super(CustomRegisterSerializer, self).update(
-            instance, validated_data
-        )
+        return super(CustomRegisterSerializer, self).update(instance, validated_data)
 
     def create(self, validated_data):
         return super(CustomRegisterSerializer, self).create(validated_data)

@@ -31,9 +31,7 @@ class TokenAdmin(ModelAdmin):
     )
     list_filter = ("working",)
 
+
 @admin.register(video_keyword.Video_Keyword)
 class VideoKeywordAdmin(ModelAdmin):
-    list_display = (
-        "keyword",
-        "video"
-    )
+    list_display = ("keyword", "video")

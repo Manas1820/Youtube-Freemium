@@ -101,9 +101,7 @@ class VideosViewSet(
         try:
 
             serializer = (
-                Video.objects.annotate(
-                    search=SearchVector("title", "description")
-                )
+                Video.objects.annotate(search=SearchVector("title", "description"))
                 .filter(search=queryset)
                 .order_by("-published_at")
             )

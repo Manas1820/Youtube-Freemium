@@ -17,18 +17,14 @@ from backend.apps.common.custom_auto_schema import CustomAutoSchema
 from backend.docs.user_docs import ProfileUpdate
 
 
-@method_decorator(
-    swagger_auto_schema(**ProfileUpdate.swagger_setup), "partial_update"
-)
+@method_decorator(swagger_auto_schema(**ProfileUpdate.swagger_setup), "partial_update")
 class ProfileViewSet(UpdateModelMixin, PsqMixin, GenericViewSet):
     http_method_names = ["patch"]
     parser_classes = [MultiPartParser]
     swagger_schema = CustomAutoSchema
     permission_classes = [IsAuthenticated]
     psq_rules = {
-        "partial_update": [
-            Rule([IsAuthenticated], ProfileCreateUpdateSerializer)
-        ]
+        "partial_update": [Rule([IsAuthenticated], ProfileCreateUpdateSerializer)]
     }
 
     def get_queryset(self):
@@ -42,9 +38,7 @@ class ProfileViewSet(UpdateModelMixin, PsqMixin, GenericViewSet):
     def update(self, request, *args, **kwargs):
         partial = kwargs.pop("partial", False)
         instance = self.get_object()
-        serializer = self.get_serializer(
-            instance, data=request.data, partial=partial
-        )
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
         serializer.is_valid(raise_exception=True)
         self.perform_update(serializer)
 

@@ -6,9 +6,7 @@ import socket
 
 import dns.resolver
 
-logging.basicConfig(
-    format="%(asctime)s - %(name)s - %(levelname)s: %(message)s"
-)
+logging.basicConfig(format="%(asctime)s - %(name)s - %(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
 
 COUNTRY_CHOICES = []

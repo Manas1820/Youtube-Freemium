@@ -8,9 +8,7 @@ class CustomToolbarActionsModelAdminMixin:
     submit_buttons = []
 
     def get_instance(self, request, object_id):
-        to_field = request.POST.get(
-            TO_FIELD_VAR, request.GET.get(TO_FIELD_VAR)
-        )
+        to_field = request.POST.get(TO_FIELD_VAR, request.GET.get(TO_FIELD_VAR))
         obj = self.get_object(request, unquote(object_id), to_field)
         return obj
 
@@ -23,12 +21,8 @@ class CustomToolbarActionsModelAdminMixin:
                     for action in self.get_change_actions(request, object_id)
                 ],
                 "submit_buttons": [
-                    self._get_submit_button_dict(
-                        button_tuple, request, object_id
-                    )
-                    for button_tuple in self.get_submit_buttons(
-                        request, object_id
-                    )
+                    self._get_submit_button_dict(button_tuple, request, object_id)
+                    for button_tuple in self.get_submit_buttons(request, object_id)
                 ],
             }
         )
@@ -40,9 +34,7 @@ class CustomToolbarActionsModelAdminMixin:
     def _get_action_dict(self, action_name, request, object_id):
         action = getattr(self, action_name)
         return dict(
-            title=getattr(
-                action, "title", action_name.replace("_", " ").title()
-            ),
+            title=getattr(action, "title", action_name.replace("_", " ").title()),
             url=action(request, object_id),
         )
 

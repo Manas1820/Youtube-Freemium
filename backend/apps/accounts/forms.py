@@ -26,9 +26,7 @@ class CustomPasswordResetForm(AllAuthPasswordResetForm):
     def save(self, request, **kwargs):
         current_site = get_current_site(request)
         email = self.cleaned_data["email"]
-        token_generator = kwargs.get(
-            "token_generator", default_token_generator
-        )
+        token_generator = kwargs.get("token_generator", default_token_generator)
 
         # Do not send an email if we do not get any matching users
         if not self.users:

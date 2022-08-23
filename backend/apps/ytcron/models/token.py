@@ -8,6 +8,4 @@ class Token(models.Model):
     no_of_calls = models.PositiveIntegerField(
         default=0
     )  # To count the no of calls made using that
-    working = models.BooleanField(
-        default=True
-    )  # To check the validity of the token
+    working = models.BooleanField(default=True)  # To check the validity of the token

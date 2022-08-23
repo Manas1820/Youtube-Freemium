@@ -35,6 +35,6 @@ class UserAdmin(BaseUserAdmin):
         ),
     )
     list_filter = ("groups",)
-    list_display = ("email", "name","keyword")
+    list_display = ("email", "name", "keyword")
     search_fields = ("email", "name")
     ordering = ("email",)

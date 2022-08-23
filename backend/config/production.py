@@ -25,9 +25,7 @@ class Prod(Common):
 
     # Mail
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_PORT = env.str(
-        "BACKEND_EMAIL_PORT", default="1025"
-    )
+    EMAIL_PORT = env.str("BACKEND_EMAIL_PORT", default="1025")
     EMAIL_HOST = env.str(
         "BACKEND_EMAIL_HOST",
         default="127.0.0.1",
@@ -40,9 +38,7 @@ class Prod(Common):
         "BACKEND_EMAIL_HOST_PASSWORD",
         default="password",
     )
-    EMAIL_USE_TLS = env.bool(
-        "BACKEND_EMAIL_USE_TLS", default=True
-    )
+    EMAIL_USE_TLS = env.bool("BACKEND_EMAIL_USE_TLS", default=True)
 
     # Disable CORS check
     CORS_ALLOWED_ORIGINS = env.list(

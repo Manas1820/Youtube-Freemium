@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('ytcron', '0001_initial'),
+        ("ytcron", "0001_initial"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='token',
-            old_name='valid',
-            new_name='working',
+            model_name="token",
+            old_name="valid",
+            new_name="working",
         ),
     ]

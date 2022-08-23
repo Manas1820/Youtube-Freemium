@@ -35,9 +35,7 @@ user_login_200_example = {
     }
 }
 
-user_logout_200_example = {
-    "application/json": {"detail": "Successfully logged out."}
-}
+user_logout_200_example = {"application/json": {"detail": "Successfully logged out."}}
 
 user_logout_401_example = {"application/json": {"detail": "Invalid token."}}
 
@@ -46,15 +44,11 @@ user_password_reset_200_example = {
 }
 
 user_password_reset_400_example = {
-    "application/json": {
-        "detail": "The user with the given email does not exist"
-    }
+    "application/json": {"detail": "The user with the given email does not exist"}
 }
 
 user_password_reset_confirm_200_example = {
-    "application/json": {
-        "detail": "Password has been reset with the new password."
-    }
+    "application/json": {"detail": "Password has been reset with the new password."}
 }
 
 user_password_reset_confirm_400_example = {
@@ -66,6 +60,4 @@ user_password_set_200_example = {
     "application/json": {"detail": "New password has been saved."}
 }
 
-user_password_set_401_example = {
-    "application/json": {"detail": "Invalid token"}
-}
+user_password_set_401_example = {"application/json": {"detail": "Invalid token"}}

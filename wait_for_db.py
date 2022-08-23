@@ -16,9 +16,7 @@ logger = logging.getLogger(__name__)
 
 TRIES = 10
 RUNTIME = os.getenv("DJANGO_CONFIGURATION")
-CONN_ID = os.getenv(
-    f"BACKEND_DATABASE_URL_{RUNTIME.upper()}"
-)
+CONN_ID = os.getenv(f"BACKEND_DATABASE_URL_{RUNTIME.upper()}")
 print(CONN_ID)
 
 

@@ -106,20 +106,17 @@ class Common(Configuration):
         },
         {
             "NAME": (
-                "django.contrib.auth.password_validation"
-                ".MinimumLengthValidator"
+                "django.contrib.auth.password_validation" ".MinimumLengthValidator"
             ),
         },
         {
             "NAME": (
-                "django.contrib.auth.password_validation"
-                ".CommonPasswordValidator"
+                "django.contrib.auth.password_validation" ".CommonPasswordValidator"
             ),
         },
         {
             "NAME": (
-                "django.contrib.auth.password_validation"
-                ".NumericPasswordValidator"
+                "django.contrib.auth.password_validation" ".NumericPasswordValidator"
             ),
         },
     ]
@@ -254,9 +251,7 @@ class Common(Configuration):
         "DEFAULT_FILTER_BACKENDS": (
             "django_filters.rest_framework.DjangoFilterBackend",
         ),
-        "DEFAULT_PERMISSION_CLASSES": (
-            "rest_framework.permissions.IsAuthenticated",
-        ),
+        "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
         "DEFAULT_PAGINATION_CLASS": (
             "backend.apps.common.pagination.DynamicPageSizePagination"
         ),
@@ -276,15 +271,10 @@ class Common(Configuration):
     # Rest and all auth configurations
     REST_AUTH_SERIALIZERS = {
         # Add custom serializers for Rest Auth
-        "LOGIN_SERIALIZER": (
-            "backend.apps.accounts.serializers.CustomLoginSerializer"
-        ),
-        "TOKEN_SERIALIZER": (
-            "backend.apps.accounts.serializers.CustomTokenSerializer"
-        ),
+        "LOGIN_SERIALIZER": ("backend.apps.accounts.serializers.CustomLoginSerializer"),
+        "TOKEN_SERIALIZER": ("backend.apps.accounts.serializers.CustomTokenSerializer"),
         "PASSWORD_RESET_SERIALIZER": (
-            "backend.apps.accounts.serializers"
-            + ".CustomPasswordResetSerializer"
+            "backend.apps.accounts.serializers" + ".CustomPasswordResetSerializer"
         ),
         "PASSWORD_RESET_CONFIRM_SERIALIZER": (
             "backend.apps.accounts.serializers"
@@ -345,7 +335,7 @@ class Common(Configuration):
     CELERY_RESULT_SERIALIZER = "json"
     CELERY_RESULT_BACKEND = "django-db"
     CELERY_CACHE_BACKEND = "default"
-    CELERY_IMPORTS = ['backend.apps.common.tasks']
+    CELERY_IMPORTS = ["backend.apps.common.tasks"]
     # Swagger settings
     SWAGGER_SETTINGS = {
         "SECURITY_DEFINITIONS": {

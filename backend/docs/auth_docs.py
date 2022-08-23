@@ -81,9 +81,7 @@ and returns a token with user details after the credentials are verified by
 the server
     """
     responses = {
-        "200": openapi.Response(
-            description="OK", examples=user_login_200_example
-        ),
+        "200": openapi.Response(description="OK", examples=user_login_200_example),
         "400": openapi.Response(
             description="Error: Bad Request", examples=user_login_400_example
         ),
@@ -109,9 +107,7 @@ user from the db. The user is identified with the help of the token
 supplied in the Authorization header.
 """
     responses = {
-        "200": openapi.Response(
-            description="OK", examples=user_logout_200_example
-        ),
+        "200": openapi.Response(description="OK", examples=user_logout_200_example),
         "401": openapi.Response(
             description="Unauthorized", examples=user_logout_401_example
         ),
@@ -178,9 +174,7 @@ a reset request. The endpoint accepts
         ),
     }
 
-    code_examples = [
-        {"lang": "bash", "source": user_password_reset_confirm_curl}
-    ]
+    code_examples = [{"lang": "bash", "source": user_password_reset_confirm_curl}]
 
     swagger_setup = {
         "operation_id": "Password Reset Confirm",
