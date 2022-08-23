@@ -3,7 +3,7 @@ from django.contrib import admin
 # Register your models here.
 from django.contrib.admin.options import ModelAdmin
 
-from backend.apps.ytcron.models import keyword, token, video
+from backend.apps.ytcron.models import keyword, token, video, video_keyword
 
 
 @admin.register(keyword.Keyword)
@@ -30,3 +30,10 @@ class TokenAdmin(ModelAdmin):
         "working",
     )
     list_filter = ("working",)
+
+@admin.register(video_keyword.Video_Keyword)
+class VideoKeywordAdmin(ModelAdmin):
+    list_display = (
+        "keyword",
+        "video"
+    )
