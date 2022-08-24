@@ -27,7 +27,7 @@ class YoutubeItegration:
             raise PermissionDenied({"detail": "Tokens Exausted"})
 
     def fetch_token(self):
-        curr_token = Token.objects.filter().first()
+        curr_token = Token.objects.filter(working=True).first()
         if not curr_token:
             raise PermissionDenied({"detail": "Tokens Exausted"})
 
