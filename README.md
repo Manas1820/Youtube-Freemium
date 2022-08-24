@@ -29,6 +29,11 @@ Change Directory to Youtube_freemium
 ```bash
 cd Youtube_Freemium 
 ```
+Copy `.env` file from example file and set your settings:
+
+```bash
+cp .env.example .env
+```
 
 ### For Docker Users :
 
@@ -51,12 +56,6 @@ Install the dependencies:
 
 ```bash
 pip install -r requirements.txt
-```
-
-Copy `.env` file from example file and set your settings:
-
-```bash
-cp .env.example .env
 ```
 
 Run migrations:
