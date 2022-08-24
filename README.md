@@ -1,4 +1,4 @@
-# Youtube_Freemium
+# Youtube Freemium
 
 ## Project Goal
 
@@ -22,12 +22,12 @@ To make an API to fetch latest videos sorted in reverse chronological order of t
 Clone the Repository
 
 ```bash
-git clone https://github.com/Manas1820/Youtube_Freemium 
+git clone https://github.com/Manas1820/Youtube-Freemium 
 ```
 Change Directory to Youtube_freemium
 
 ```bash
-cd Youtube_Freemium 
+cd Youtube-Freemium 
 ```
 Copy `.env` file from example file and set your settings:
 
