@@ -32,7 +32,7 @@ cd Youtube_Freemium
 Copy `.env` file from example file and set your settings:
 
 ```bash
-cp .env.example .env
+cp .env.template .env
 ```
 
 ### For Docker Users :
