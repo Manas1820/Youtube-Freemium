@@ -23,6 +23,25 @@ services:
     networks:
       - shared_network
 
+  celery-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-celery
+    hostname: app-celery
+    restart: on-failure
+    volumes:
+      - .:/app
+    env_file:
+      - ./.env
+    command: ./celerybeat_entrypoint.sh
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
+      - rabbit
+    networks:
+      - shared_network
   rabbit:
     image: rabbitmq:3-management
     container_name: rabbit

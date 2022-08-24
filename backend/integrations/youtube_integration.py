@@ -1,12 +1,13 @@
 from signal import valid_signals
+
 import googleapiclient.discovery
 from django.db import IntegrityError
 from rest_framework.exceptions import PermissionDenied, ValidationError
 
 from backend.apps.ytcron.models import video_keyword
+from backend.apps.ytcron.models.keyword import Keyword
 from backend.apps.ytcron.models.token import Token
 from backend.apps.ytcron.models.video import Video
-from backend.apps.ytcron.models.keyword import Keyword
 
 
 class YoutubeItegration:
@@ -49,6 +50,7 @@ class YoutubeItegration:
             part="snippet",
             type="video",
             maxResults=10,
+            publishedAfter="2022-04-01T00:00:00Z",
             order="relevance",
         )
 
