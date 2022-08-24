@@ -23,6 +23,8 @@ class Prod(Common):
         )
     }
 
+    DEBUG = True
+
     # Mail
     EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_PORT = env.str("BACKEND_EMAIL_PORT", default="1025")
