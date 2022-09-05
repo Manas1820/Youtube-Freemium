@@ -41,6 +41,10 @@ cp .env.template .env
 docker-compose up --build 
 ```
 
+For admin intially credentials are : 
+- ```user``` = ```admin@backend.com```
+- ```password``` = ```tempPassword@1234```
+
 <b>Enjoy the services at  `localhost:8000`</b>
 
 ### For Local Use
@@ -73,6 +77,10 @@ Now Open Three Different Termina Instances and run the following :
 
 Now you are ready to go !
 
+Now you can create a superuser using 
+- `python manage.py createsuperuser`
+
+and after the super user add multiple api tokens to make it work
 
 <b> Refer documentation for using the api's </b>
 
